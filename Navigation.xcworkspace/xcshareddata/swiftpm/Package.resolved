@@ -1,0 +1,25 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "CasePaths",
+        "repositoryURL": "https://github.com/pointfreeco/swift-case-paths",
+        "state": {
+          "branch": "master",
+          "revision": "a73e62a49b087a42828158ffa72b5479bf348d72",
+          "version": null
+        }
+      },
+      {
+        "package": "Prelude",
+        "repositoryURL": "git@github.com:pointfreeco/swift-prelude.git",
+        "state": {
+          "branch": "master",
+          "revision": "c61b49392768a6fa90fe9508774cf90a80061c8b",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}
