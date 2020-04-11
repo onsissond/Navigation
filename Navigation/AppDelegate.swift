@@ -40,13 +40,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         _window.rootViewController = _sceneFactory.mainTabBarController
         _window.makeKeyAndVisible()
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            self._goToSettigns()
+            self._goToDetails()
         }
         return true
     }
 
     private func _goToSettigns() {
         _appStore.send(.navigation(.tabBar(.tabBar(.execute(.select(.profile))))))
+    }
+
+    private func _goToDetails() {
+        _appStore.send(.navigation(.tabBar(.search(.execute(.push(.details))))))
     }
 }
 

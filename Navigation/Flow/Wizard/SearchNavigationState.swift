@@ -17,6 +17,10 @@ struct SearchNavigationState: NavigationState {
     }
 
     var previousStep: Step = .idle
-    var currentStep: Step = .idle
+    var currentStep: Step = .idle {
+        didSet {
+            print("#Search# currentStep \(currentStep) ")
+        }
+    }
     var transaction: Transaction<Step>?
 }

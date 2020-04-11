@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 
-class SearchViewController: ViewController {
+class DetailsViewController: ViewController {
     private let _store: SearchNavigationStore
     private let _sceneFactory: SceneFactory
     private let _disposeBag = DisposeBag()
@@ -25,6 +25,8 @@ class SearchViewController: ViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        render(text: "Details screen", color: .brown)
         button.rx.tap
             .subscribe(onNext: { [unowned self] in
                 self.navigationController?.pushViewController(
@@ -37,12 +39,12 @@ class SearchViewController: ViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        _store.send(.didAppear(.search))
+        _store.send(.didAppear(.details))
     }
 
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        _store.send(.didDisappear(.search))
+        _store.send(.didDisappear(.details))
     }
 
     required init?(coder aDecoder: NSCoder) {

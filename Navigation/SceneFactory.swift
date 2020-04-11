@@ -20,6 +20,18 @@ struct SceneFactory {
             action: AppNavigationAction.tabBar
     )
 
+    private lazy var _searchBarNavigationStore: SearchNavigationStore =
+        _tabBarNavigationStore.view(
+            value: ^\.search,
+            action: TabBarNavigationAction.search
+    )
+
+    private lazy var _profileBarNavigationStore: ProfileNavigationStore =
+        _tabBarNavigationStore.view(
+            value: ^\.profile,
+            action: TabBarNavigationAction.profile
+    )
+
     init(store: AppNavigationStore) {
         _store = store
     }
@@ -65,26 +77,23 @@ struct SceneFactory {
     }
 
     mutating func makeSearchComponent() -> UIViewController {
-        let vc = SearchViewController(
-            store: _tabBarNavigationStore.view(
-                value: ^\.search,
-                action: TabBarNavigationAction.search
-            ),
+        SearchViewController(
+            store: _searchBarNavigationStore,
             sceneFactory: self
         )
-        vc.render(text: "Search screen", color: .red)
-        return vc
     }
 
     mutating func makeProfileComponent() -> UIViewController {
-        let vc = ProfileViewController(
-            store: _tabBarNavigationStore.view(
-                value: ^\.profile,
-                action: TabBarNavigationAction.profile
-            ),
+        ProfileViewController(
+            store: _profileBarNavigationStore,
             sceneFactory: self
         )
-        vc.render(text: "Profile screen", color: .green)
-        return vc
+    }
+
+    mutating func makeDetailsComponent() -> UIViewController {
+        DetailsViewController(
+            store: _searchBarNavigationStore,
+            sceneFactory: self
+        )
     }
 }

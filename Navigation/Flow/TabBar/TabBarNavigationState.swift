@@ -20,7 +20,7 @@ struct TabBarNavigationState: NavigationState {
     var previousStep: Step = .search
     var currentStep: Step = .search {
         didSet {
-            print("Current step \(currentStep)")
+            print("#TabBar# Current step \(currentStep)")
         }
     }
     var transaction: Transaction<Step>?
@@ -37,4 +37,12 @@ var tabBarNavigationReducer: Reducer<TabBarNavigationState, TabBarNavigationActi
         navigationReducer,
         value: \.self,
         action: /TabBarNavigationAction.tabBar
+) <> pullback(
+        navigationReducer,
+        value: \TabBarNavigationState.search,
+        action: /TabBarNavigationAction.search
+) <> pullback(
+        navigationReducer,
+        value: \TabBarNavigationState.profile,
+        action: /TabBarNavigationAction.profile
 )
